@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\Bill;
+use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,13 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::count();
-
-        $widget = [
-            'users' => $users,
-            //...
-        ];
-
-        return view('home', compact('widget'));
+        return view('home', [
+            'admins' => User::count(), 
+            'users' => Client::count(),
+            'earnings_monthly' => Bill::whereMonth('created_at', now()->month)->sum('billing_amount'),
+            'earnings_yearly' => Bill::whereYear('created_at', now()->year)->sum('billing_amount')
+        ]);
     }
 }

@@ -1,1 +1,17 @@
-//
+.logout-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+}
+.logout-btn:hover {
+    color: rgba(255, 255, 255, 0.979);
+}
+.logout-btn:focus {
+    outline: none;
+    border: none;
+}
+
+
+

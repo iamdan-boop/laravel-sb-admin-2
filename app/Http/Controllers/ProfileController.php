@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User as ModelsUser;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ class ProfileController extends Controller
 
     public function index()
     {
+
         return view('profile');
     }
 
@@ -31,7 +33,7 @@ class ProfileController extends Controller
         ]);
 
 
-        $user = User::findOrFail(Auth::user()->id);
+        $user = ModelsUser::findOrFail(Auth::user()->id);
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
